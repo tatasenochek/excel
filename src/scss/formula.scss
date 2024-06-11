@@ -1,0 +1,37 @@
+@import "variables";
+@import "mixins";
+
+.excel__formula {
+  position: sticky;
+  top: 121px;
+  z-index: 4;
+  display: flex;
+  background-color: $background-color;
+  padding-block-start: $padding-small;
+  padding-block-end: $padding-small;
+
+  .info {
+    font-size: 18px;
+    font-weight: 600;
+    color: $button-icon-color;
+    width: 70px;
+    text-align: center;
+    padding: $padding-medium;
+    border-right: 1px solid $button-bg-color-hover;
+    background-color: #fff;
+    border-radius: 100px 0 0 100px;
+  }
+
+  .input {
+    width: 100%;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    display: flex;
+    padding: $padding-medium;
+    font-size: 16px;
+    color: $color-darck;
+    border-radius: 0 100px 100px 0;
+
+  }
+}
