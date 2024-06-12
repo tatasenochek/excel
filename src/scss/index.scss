@@ -5,6 +5,7 @@
 @import "toolbar";
 @import "formula";
 @import "table";
+@import "dashboard";
 
 * {
   margin: 0;
@@ -19,8 +20,8 @@ body {
   line-height: normal;
   width: calc(100% - 40px);
   margin: 0 auto;
-  color: $color-darck;
-  background-color: $background-color;
+  color: $text-color;
+  background-color: $bg-color;
   overflow: hidden;
 }
 

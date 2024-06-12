@@ -5,16 +5,16 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: $button-icon-color;
+  color: $icon-color;
 
   &:hover {
     border-radius: $border-radius;
-    background-color: $button-bg-color-hover;
+    background-color: $hover-color;
   }
 
   &:active {
     border-radius: $border-radius;
-    background-color: $button-bg-color-hover;
-    color: $color-darck;
+    background-color: $hover-color;
+    color: $icon-color;
   }
 }

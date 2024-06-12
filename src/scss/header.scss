@@ -8,24 +8,24 @@
   padding-block-start: $padding-big;
   display: flex;
   justify-content: space-between;
-  background-color: $background-color;
+  background-color: $bg-color;
   padding-block-end: 1px;
-  
+
   & .input {
     height: 40px;
     font-size: 18px;
     background: transparent;
     border: none;
     padding: $padding-medium;
-    color: $button-icon-color;
+    color: $icon-color;
   }
 
   & .input:focus-visible {
-    border: 1px solid $color-darck;
+    border: 1px solid $text-color;
     border-radius: $border-radius;
     background-color: white;
-    color: $color-darck;
-    outline: 1px solid $color-darck;;
+    color: $text-color;
+    outline: 1px solid $text-color;
   }
 
   & .buttons {

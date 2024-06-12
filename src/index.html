@@ -11,99 +11,67 @@
 </head>
 
 <body>
-
   <div class="container" id="app">
-
-    <div class="excel">
-      <div class="excel__header">
-        <input type="text" class="input" value="Новая таблица">
-
-        <div class="buttons">
-          <button type="button" class="button">
+    <div class="db">
+      <div class="db__header">
+        <h1>Таблицы</h1>
+      </div>
+      <div class="db__new">
+        <div class="link">
+          <a href="#">
             <span class="material-symbols-outlined">
-              delete
-            </span>
-          </button>
-          <button type="button" class="button">
+              add_circle
+              </span>
+          </a>
+          <p>Новая таблица</p>
+        </div>
+        <div class="link">
+          <a href="#">
             <span class="material-symbols-outlined">
-              logout
-            </span>
-          </button>
+              playlist_add
+              </span>
+          </a>
+          <p>Список дел</p>
+        </div>
+        <div class="link">
+          <a href="#">
+            <span class="material-symbols-outlined">
+              attach_money
+              </span>
+          </a>
+          <p>Бюджет на месяц</p>
+        </div>
+        <div class="link">
+          <a href="#">
+            <span class="material-symbols-outlined">
+              paid
+              </span>
+          </a>
+          <p>Бюджет на год</p>
         </div>
       </div>
-
-      <div class="excel__toolbar">
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_bold
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_italic
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            strikethrough_s
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_align_left
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_align_justify
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_align_right
-          </span>
-        </button>
-
-      </div>
-
-      <div class="excel__formula">
-        <p class="info">fx</p>
-        <div class="input" contenteditable spellcheck="false"></div>
-      </div>
-
-      <div class="excel__table">
-        <div class="table">
-          <div class="table-row">
-            <div class="tabel-column-empty"></div>
-            <div class="tabel-column-count">A</div>
-            <div class="tabel-column-count">B</div>
-            <div class="tabel-column-count">C</div>
-          </div>
-          <div class="table-row-data">
-            <div class="tabel-row-count">1</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data 1A</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data 1B</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data 1C</div>
-          </div>
-          <div class="table-row-data">
-            <div class="tabel-row-count">2</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data 2A</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data 2B</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data 2C</div>
-          </div>
-          
-          <div class="table-row-data">
-            <div class="tabel-row-count">3</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data</div>
-            <div class="tabel-column" contenteditable spellcheck="true">Data</div>
-          </div>
-                    
-        </div>
-      </div>
+      <ul class="db__list">
+        <li>
+          <article class="item-header">
+            <h3>Название таблицы</h3>
+            <p>Дата создания</p>
+          </article>
+        </li>
+        <li>
+          <a href="#" class="item">
+            <h3>Новая таблица</h3>
+            <data>12.06.2024</data>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="item">
+            <h3>Новая таблица</h3>
+            <data>12.06.2024</data>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
-
 </body>
 
 </html>

@@ -27,7 +27,7 @@
   }
 
   .tabel-column-empty {
-    background-color: $button-bg-color-active;
+    background-color: $active-color;
     width: 70px;
     height: 26px;
     border: 1px solid #555;
@@ -37,7 +37,7 @@
   }
 
   .tabel-column-count {
-    background-color: $button-bg-color-hover;
+    background-color: $hover-color;
     width: 120px;
     height: 26px;
     display: flex;
@@ -54,7 +54,7 @@
   }
 
   .tabel-row-count {
-    background-color: $button-bg-color-hover;
+    background-color: $hover-color;
     width: 70px;
     height: 26px;
     display: flex;
@@ -71,7 +71,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid $button-bg-color-hover;
+    border: 1px solid $hover-color;
     border-top: none;
     border-left: none;
     white-space: nowrap;
