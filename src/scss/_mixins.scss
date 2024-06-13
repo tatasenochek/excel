@@ -1,0 +1,20 @@
+@mixin button() {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $icon-color;
+
+  &:hover {
+    border-radius: $border-radius;
+    background-color: $hover-color;
+  }
+
+  &:active {
+    border-radius: $border-radius;
+    background-color: $hover-color;
+    color: $icon-color;
+  }
+}

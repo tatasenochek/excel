@@ -1,0 +1,98 @@
+@import "variables";
+@import "mixins";
+
+.db {
+
+  &__header {
+  text-align: center;
+  padding-block-start: $padding-big;
+  padding-block-end: $padding-big;
+  }
+
+  &__new {
+    background-color: $bg-assent-color;
+    padding: $padding-big;
+    display: flex;
+    gap: $padding-big;
+    overflow-x: auto;
+    border-radius: $border-radius;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    & .link {
+      color: $text-color; 
+
+      & a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: $icon-color;  
+        border-radius: $border-radius;
+        background-color: #fff;
+        width: clamp(7.5rem, 7.143vw + 5.893rem, 11.25rem);
+        height: clamp(5.625rem, 3.571vw + 4.821rem, 7.5rem);
+        margin-block-end: $padding-small;
+
+        & .material-symbols-outlined {
+          font-size: 40px;
+        }
+
+        &:hover {
+          border: 1px solid $active-color;
+          background-color: $hover-color;
+        }
+
+        &:active {
+          border: 1px solid $active-color;
+          background-color: $active-color;
+        }
+      }
+    }
+  }
+  
+  &__list {
+    padding-block-start: $padding-big;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $padding-medium;
+    max-width: 1200px;
+    margin: auto;
+
+    & h3 {
+      font-weight: 500;
+    }
+
+    & .item-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 500;
+      padding-block-end: $padding-medium;
+      padding-inline-start: $padding-small;
+      padding-inline-end: $padding-small;
+      
+    }
+    & .item {
+      display: flex;
+      justify-content: space-between;
+      padding-block-start: $padding-small;
+      padding-block-end: $padding-small;
+      border: 1px solid transparent;
+      border-bottom: 1px solid $active-color;
+      color: $text-color;
+      text-decoration: none;
+      padding-inline-start: $padding-small;
+      padding-inline-end: $padding-small;
+      
+
+      &:hover {
+        background-color: $hover-color;
+        border: 1px solid $active-color;
+        border-radius: $border-radius;
+      }
+    }
+  }
+}
