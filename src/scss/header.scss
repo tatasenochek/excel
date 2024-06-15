@@ -2,7 +2,9 @@
 @import "mixins";
 
 .excel__header {
-  position: sticky;
+  position: fixed;
+  left: 20px;
+  right: 20px;
   top: 0px;
   z-index: 4;
   padding-block-start: $padding-big;

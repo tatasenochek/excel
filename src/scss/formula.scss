@@ -2,7 +2,9 @@
 @import "mixins";
 
 .excel__formula {
-  position: sticky;
+  position: fixed;
+  left: 20px;
+  right: 20px;
   top: 121px;
   z-index: 4;
   display: flex;
