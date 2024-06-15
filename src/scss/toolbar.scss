@@ -2,13 +2,13 @@
 @import "mixins";
 
 .excel__toolbar {
-  position: sticky;
-  left: 0;
-  right: 0;
+  position: fixed;
+  left: 20px;
+  right: 20px;
   top: 71px;
   z-index: 4;
   padding-block-start: $padding-small;
-  background: $bg-assent-color;
+  background: $bg-color;
   display: flex;
   gap: $padding-medium;
 
