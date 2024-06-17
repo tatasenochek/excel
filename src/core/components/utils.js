@@ -1,3 +1,5 @@
+import { $ } from "./utilit";
+
 export function capitalize(string) {
 	if (typeof string !== 'string') {
 		return '';
@@ -9,21 +11,30 @@ const CODES = {
 	Z: 90,
 };
 
-function createCell() {
-	return `<div class="cell" contenteditable></div>`;
+function createCell(_, col, row) {
+	return `<div class="cell" contenteditable data-type="resizable" data-col=${col} data-row=${row}></div>`;
 }
 
 function createRow(index, content) {
+	const resize = index ? `<div class="row-resize" data-resize="row"></div>` : ''
 	return `
-   <div class="row">
-      <div class="row-info">${index ? index : ''}</div>
+   <div class="row" data-type="resizable" data-row="${index}">
+      <div class="row-info">
+				${index ? index : ''}
+				${resize}
+				</div>
       <div class="row-data">${content}</div>
     </div>
   `;
 }
 
-function createColumn(col) {
-	return `<div class="column">${col}</div>`;
+function createColumn(col, index) {
+	return `
+		<div class="column" data-type="resizable" data-col="${index}">
+			${col}
+			<div class="col-resize" data-resize="col"></div>
+		</div>
+	`;
 }
 
 function toChar(_, index) {
@@ -51,4 +62,57 @@ export function createTable(rowsCount = 10) {
 	}
 
 	return rows.join('');
+}
+
+export function shouldResize(event) {
+	return event.target.dataset.resize
+}
+
+export function tableResizeHendler(event, $root) {
+	const $resizer = $(event.target)
+	const $parent = $resizer.closest('[data-type="resizable"]')
+	const coords = $parent.getCoords()
+	const cells = $root.findAll(`[data-col="${$parent.data.col}"]`)
+	const typeResize = $resizer.data.resize
+	const sideProp = typeResize === 'col' ? 'bottom' : 'right'
+	let value;
+
+	$resizer.css({
+		opacity: 1,
+		[sideProp]: '-5000px'
+	})
+
+	document.onmousemove = e => {
+		if (typeResize === 'col') {
+			const delta = Math.floor(e.pageX - coords.right)
+			value = Math.floor(coords.width + delta)
+			$resizer.css({
+				right: -delta + 'px'
+			})
+		} else {
+			const delta = Math.floor(e.pageY - coords.bottom)
+			value = Math.floor(coords.height + delta)
+			$resizer.css({
+				bottom: -delta + 'px'
+			})
+		}       
+	}
+
+	document.onmouseup = () => {
+		document.onmousemove = null
+		document.onmouseup = null
+
+		$resizer.css({
+			opacity: 0,
+			bottom: 0,
+			right: 0
+		})
+
+		if (typeResize === 'col') {
+			$parent.css({width: value + 'px'})
+			cells.forEach(el => el.style.width = value + 'px')
+		} else {
+			$parent.css({height: value + 'px'})
+		}
+	}
 }
