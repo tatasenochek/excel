@@ -4,7 +4,13 @@ export class ExcelComponent extends Events {
   constructor($root, options = {}) {
     super($root, options.listners)
 
-    this.name = options.name
+    this.name = options.name || ''
+
+    this.prepare()
+  }
+
+  prepare() {
+    
   }
 
   toHTML() {

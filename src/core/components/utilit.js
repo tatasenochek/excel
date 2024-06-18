@@ -54,10 +54,22 @@ class Utilit {
     return this.$el.querySelectorAll(selector)
   }
 
+  find(selector) {
+    return $(this.$el.querySelector(selector))
+  }
+
   css(style = {}) {
     Object.keys(style).forEach(key => {
       this.$el.style[key] = style[key]
     })
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className)
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className)
   }
 }
 
