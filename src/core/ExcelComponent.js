@@ -9,9 +9,7 @@ export class ExcelComponent extends Events {
     this.prepare()
   }
 
-  prepare() {
-    
-  }
+  prepare() {}
 
   toHTML() {
     return ''
