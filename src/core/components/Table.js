@@ -1,19 +1,19 @@
 import { ExcelComponent } from "../ExcelComponent";
 import { TableSelection } from "./TabelSelection";
 import { $ } from "./utilit";
-import { createTable, isCell, shouldResize, tableResizeHendler, range, matrix } from "./utils";
+import { createTable, isCell, shouldResize, tableResizeHendler, matrix, nextSelector } from "./utils";
 
 export class Table extends ExcelComponent {
   static className = 'excel__table';
 
   constructor($root) {
     super($root, {
-      listners: ['mousedown']
+      listners: ['mousedown', 'keydown']
     })
   }
 
   toHTML() {
-    return createTable(100)
+    return createTable(10)
   }
 
   prepare() {
@@ -40,4 +40,24 @@ export class Table extends ExcelComponent {
       }
     }
   }
+
+  onKeydown(event) {
+    const keys = [
+      'Tab',
+      'Enter',
+      'ArrowLeft',
+      'ArrowUp',
+      'ArrowRight',
+      'ArrowDown'
+    ]
+    const {key} = event
+    if (keys.includes(key) && !event.shiftKey) {
+      event.preventDefault()
+
+      const id = this.selection.current.id(true)
+      const $next = this.$root.find(nextSelector(key, id))
+      this.selection.select($next)
+    }
+  }
 }
+

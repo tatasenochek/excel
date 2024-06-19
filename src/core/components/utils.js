@@ -71,7 +71,7 @@ export function createTable(rowsCount = 10) {
       .join('')
 	  rows.push(createRow(row+1, cells))
 	}
-
+	
 	return rows.join('');
 }
 
@@ -151,4 +151,25 @@ export function matrix($target, $current) {
     rows.forEach(row => acc.push(`${row}:${col}`))
     return acc
   }, [])
+}
+
+export function nextSelector(key, {row, col}) {
+  const minValue = 0
+  switch(key) {
+    case 'Enter':
+    case 'ArrowDown':
+      row++
+      break
+    case 'Tab':
+    case 'ArrowRight':
+      col++
+      break
+    case 'ArrowLeft':
+      col = col - 1 < minValue ? minValue : col - 1
+      break
+    case 'ArrowUp':
+      row = row - 1 < minValue ? minValue : row - 1
+      break
+  }
+  return `[data-id="${row}:${col}"]`
 }
