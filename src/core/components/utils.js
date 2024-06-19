@@ -11,8 +11,19 @@ const CODES = {
 	Z: 90,
 };
 
-function createCell(_, col, row) {
-	return `<div class="cell" contenteditable data-type="resizable" data-col=${col} data-row=${row}></div>`;
+function createCell(row) {
+	return function(_, col) {
+		return `
+			<div 
+				class="cell" 
+				contenteditable 
+				data-type="cell" 
+				data-col=${col} 
+				data-row=${row}
+				data-id=${row}:${col} 
+			></div>
+		`
+	}
 }
 
 function createRow(index, content) {
@@ -53,14 +64,14 @@ export function createTable(rowsCount = 10) {
    
 	rows.push(createRow(null, cols));
 
-	for (let i = 0; i < rowsCount; i++) {
+	for (let row = 0; row < rowsCount; row++) {
     const cells = new Array(colsCount)
       .fill('')
-      .map(createCell)
+      .map(createCell(row))
       .join('')
-	  rows.push(createRow(i+1, cells))
+	  rows.push(createRow(row+1, cells))
 	}
-
+	
 	return rows.join('');
 }
 
@@ -115,4 +126,50 @@ export function tableResizeHendler(event, $root) {
 			$parent.css({height: value + 'px'})
 		}
 	}
+}
+
+export function isCell(event) {
+	return event.target.dataset.type === 'cell'
+}
+
+export function range(start, end) {
+  if (start > end) {
+    [end, start] =[start, end]
+  }
+  return new Array(end - start + 1)
+  .fill('')
+  .map((_, index) => start + index)
+}
+
+export function matrix($target, $current) {
+	const target = $target.id(true)
+	const current = $current.id(true)
+	const cols = range(current.col, target.col)
+  const rows = range(current.row, target.row)
+        
+  return cols.reduce((acc, col) => {
+    rows.forEach(row => acc.push(`${row}:${col}`))
+    return acc
+  }, [])
+}
+
+export function nextSelector(key, {row, col}) {
+  const minValue = 0
+  switch(key) {
+    case 'Enter':
+    case 'ArrowDown':
+      row++
+      break
+    case 'Tab':
+    case 'ArrowRight':
+      col++
+      break
+    case 'ArrowLeft':
+      col = col - 1 < minValue ? minValue : col - 1
+      break
+    case 'ArrowUp':
+      row = row - 1 < minValue ? minValue : row - 1
+      break
+  }
+  return `[data-id="${row}:${col}"]`
 }
