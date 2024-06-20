@@ -1,3 +1,4 @@
+import { createCell, createColumn, createRow } from "./template";
 import { $ } from "./utilit";
 
 export function capitalize(string) {
@@ -14,67 +15,15 @@ const CODES = {
 const DEFAULT_WIDTH = 120
 const DEFAULT_HEIGHT = 26
 
-function createCell(state, row) {
-	return function(_, col) {
-		const width = getWidth(state.colState, col)
-		const id = `${row}:${col}`
-		const data = state.dataState[id]
-		return `
-			<div 
-				class="cell" 
-				contenteditable 
-				data-type="cell" 
-				data-col=${col} 
-				data-row=${row}
-				data-id=${row}:${col}
-				style="width:${width}"
-			>${data || ''}</div>
-		`
-	}
-}
-
-function createRow(index, content, state) {
-	const resize = index ? `<div class="row-resize" data-resize="row"></div>` : ''
-	const height = getHeight(state, index)
-	return `
-   <div 
-	 	class="row" 
-	 	data-type="resizable" 
-		data-row="${index}"
-		style="height: ${height}"
-		>
-      <div class="row-info">
-				${index ? index : ''}
-				${resize}
-				</div>
-      <div class="row-data">${content}</div>
-    </div>
-  `;
-}
-
-function createColumn({col, index, width}) {
-	return `
-		<div 
-			class="column" 
-			data-type="resizable" 
-			data-col="${index}" 
-			style="width: ${width}"
-		> 
-			${col}
-			<div class="col-resize" data-resize="col"></div>
-		</div>
-	`;
-}
-
 function toChar(_, index) {
   return String.fromCharCode(CODES.A + index)
 }
 
-function getWidth(state, index) {
+export function getWidth(state, index) {
 	return (state[index] || DEFAULT_WIDTH) + 'px'
 }
 
-function getHeight(state, index) {
+export function getHeight(state, index) {
 	return (state[index] || DEFAULT_HEIGHT) + 'px'
 }
 
