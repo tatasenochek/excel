@@ -16,7 +16,9 @@ const DEFAULT_HEIGHT = 26
 
 function createCell(state, row) {
 	return function(_, col) {
-		const width = getWidth(state, col)
+		const width = getWidth(state.colState, col)
+		const id = `${row}:${col}`
+		const data = state.dataState[id]
 		return `
 			<div 
 				class="cell" 
@@ -26,7 +28,7 @@ function createCell(state, row) {
 				data-row=${row}
 				data-id=${row}:${col}
 				style="width:${width}"
-			></div>
+			>${data || ''}</div>
 		`
 	}
 }
@@ -100,7 +102,7 @@ export function createTable(rowsCount = 10, state = {}) {
 	for (let row = 0; row < rowsCount; row++) {
     const cells = new Array(colsCount)
       .fill('')
-      .map(createCell(state.colState, row))
+      .map(createCell(state, row))
       .join('')
 	  rows.push(createRow(row+1, cells, state.rowState))
 	}
@@ -220,4 +222,11 @@ export function storage(key, data = null) {
 		return JSON.parse(localStorage.getItem(key))
 	}
 	localStorage.setItem(key, JSON.stringify(data))
+}
+
+export function isEqual(a, b) {
+	if (typeof a === 'object' && typeof b === 'object') {
+		return JSON.stringify(a) === JSON.stringify(b)
+	}
+	return a === b
 }
