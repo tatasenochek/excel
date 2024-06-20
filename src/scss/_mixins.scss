@@ -6,15 +6,25 @@
   border: none;
   cursor: pointer;
   color: $icon-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+
+  span {
+    pointer-events: none;
+  }
 
   &:hover {
     border-radius: $border-radius;
     background-color: $hover-color;
+    opacity: 1;
   }
 
-  &:active {
+  &.active {
     border-radius: $border-radius;
-    background-color: $hover-color;
+    background-color: $icon-color-active;
     color: $icon-color;
+    opacity: 1;
   }
 }
