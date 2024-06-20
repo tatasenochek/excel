@@ -1,5 +1,6 @@
-import { ExcelComponent } from "../ExcelComponent";
+import { ExcelComponent } from "../../ExcelComponent";
 import { createToolbar } from "./template";
+
 
 export class Toolbar extends ExcelComponent {
   static className = 'excel__toolbar';

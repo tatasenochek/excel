@@ -1,5 +1,6 @@
 import { ExcelComponent } from "../ExcelComponent";
-import { $ } from "./utilit";
+import { $ } from "./Utilit";
+
 
 export class Formula extends ExcelComponent {
   static className = 'excel__formula';

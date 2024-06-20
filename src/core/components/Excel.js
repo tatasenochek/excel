@@ -1,6 +1,6 @@
 import { Emitter } from "../Emitter";
 import { StoreSubscriber } from "../StoreSubscriber";
-import { $ } from "./utilit";
+import { $ } from "./Utilit";
 
 export class Excel {
   constructor (selector, options) {

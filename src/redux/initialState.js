@@ -1,4 +1,4 @@
-import { storage } from "../core/components/utils"
+import { storage } from "../core/components/Table/utils"
 
 const defaultState = {
   rowState: {},
