@@ -1,5 +1,6 @@
 import { initialStates } from "../../../const";
-import { getHeight, getWidth, toInlineStyle } from "./utils";
+import { parse } from "../../parse";
+import { getHeight, getWidth } from "./utils";
 
 export function createCell(state, row) {
 	return function (_, col) {
@@ -19,8 +20,9 @@ export function createCell(state, row) {
 				data-col=${col} 
 				data-row=${row}
 				data-id=${row}:${col}
+				data-value="${data || ''}"
 				style="${styles}; width:${width}"
-			>${data || ''}</div>
+			>${parse(data) || ''}</div>
 		`;
 	};
 }
@@ -58,4 +60,14 @@ export function createColumn({ col, index, width }) {
 			<div class="col-resize" data-resize="col"></div>
 		</div>
 	`;
+}
+
+export function camelToDashCase(str) {
+	return str.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`)
+}
+
+export function toInlineStyle(styles = {}) {
+	return Object.keys(styles)
+		.map(key => `${camelToDashCase(key)}:${styles[key]}`)
+		.join('; ')
 }
