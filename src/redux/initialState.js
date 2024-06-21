@@ -1,12 +1,20 @@
-import { initialStates } from "../const"
+import { initialStates, defaultTitle } from "../const"
 import { storage } from "../core/components/Table/utils"
 
 const defaultState = {
+  title: defaultTitle,
   rowState: {},
   colState: {},
   dataState: {},
+  stylesState: {},
   currentText: '',
   currentStyles: initialStates
 }
 
-export const initialState = storage('excel-state') ? storage('excel-state') : defaultState
+const normalize = state => ({
+  ...state,
+  currentStyles: initialStates,
+  currentText: ''
+})
+
+export const initialState = storage('excel-state') ? normalize(storage('excel-state')) : defaultState

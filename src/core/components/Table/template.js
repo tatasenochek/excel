@@ -1,14 +1,15 @@
 import { initialStates } from "../../../const";
-import { camelToDashCase, getHeight, getWidth } from "./utils";
+import { getHeight, getWidth, toInlineStyle } from "./utils";
 
 export function createCell(state, row) {
 	return function (_, col) {
 		const width = getWidth(state.colState, col);
 		const id = `${row}:${col}`;
 		const data = state.dataState[id];
-		const styles = Object.keys(initialStates)
-		.map(key => `${camelToDashCase(key)}:${initialStates[key]}`)
-		.join('; ')
+		const styles = toInlineStyle({
+			...initialStates,
+			...state.stylesState[id]
+		})
 	
 		return `
 			<div 
@@ -57,39 +58,4 @@ export function createColumn({ col, index, width }) {
 			<div class="col-resize" data-resize="col"></div>
 		</div>
 	`;
-}
-
-export function createToolbar() {
-	return `
-    <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_bold
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_italic
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            strikethrough_s
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_align_left
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_align_justify
-          </span>
-        </button>
-        <button type="button" class="button">
-          <span class="material-symbols-outlined">
-            format_align_right
-          </span>
-        </button>
-    `;
 }

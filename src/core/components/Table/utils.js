@@ -1,3 +1,4 @@
+import { initialStates } from "../../../const";
 import { $ } from "../Utilit";
 import { createCell, createColumn, createRow } from "./template";
 
@@ -182,4 +183,10 @@ export function isEqual(a, b) {
 
 export function camelToDashCase(str) {
 	return str.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`)
+}
+
+export function toInlineStyle(styles = {}) {
+	return Object.keys(styles)
+		.map(key => `${camelToDashCase(key)}:${styles[key]}`)
+		.join('; ')
 }

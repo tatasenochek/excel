@@ -1,7 +1,9 @@
-import { CHANGE_TEXT, TABLE_RESIZE, CHANGE_STYLE } from './types';
+import { toInlineStyle } from '../core/components/Table/utils';
+import { CHANGE_TEXT, TABLE_RESIZE, CHANGE_STYLE, APPLY_STYLE, CHANGE_TITLE } from './types';
 
 export function rootReduser(state, action) {
 	let field;
+	let val
 
 	switch (action.type) {
 		case TABLE_RESIZE:
@@ -22,7 +24,19 @@ export function rootReduser(state, action) {
         ...state,
         currentStyles: action.data
       }
-    // case APPLY_STYLE:
+    case APPLY_STYLE:
+			field = 'stylesState'
+			val = state[field] || {}
+			action.data.ids.forEach(id => {
+				val[id] = {...val[id], ...action.data.value}
+			})
+			return {
+				...state,
+				[field]: val, 
+				currentStyles: {...state.currentStyles, ...action.data.value}
+			}
+		case CHANGE_TITLE:
+			return {...state, title: action.data}
 		default:
 			return state;
 	}
