@@ -1,9 +1,17 @@
-function createLinkItem() {
+import { storage } from "../core/components/Table/utils"
+
+function createLinkItem(key) {
+  const model = storage(key)
+  const id = key.split(':')[1]
+  
   return `
     <li>
-      <a href="#" class="item">
-        <h3>Новая таблица</h3>
-        <data>12.06.2024</data>
+      <a href="#excel/${id}" class="item">
+        <h3>${model.title}</h3>
+        <data>
+        ${new Date(model.date).toLocaleDateString()} <br/>
+        ${new Date(model.date).toLocaleTimeString()}
+        </data>
       </a>
     </li>
   `

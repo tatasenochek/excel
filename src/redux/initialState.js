@@ -1,4 +1,5 @@
 import { initialStates, defaultTitle } from "../const"
+import { clone } from "../core/components/Table/utils"
 
 const defaultState = {
   title: defaultTitle,
@@ -7,7 +8,8 @@ const defaultState = {
   dataState: {},
   stylesState: {},
   currentText: '',
-  currentStyles: initialStates
+  currentStyles: initialStates,
+  date: new Date().toJSON()
 }
 
 const normalize = state => ({
@@ -17,5 +19,5 @@ const normalize = state => ({
 })
 
 export function normalizeInitialState(state) {
-  return state ? normalize(state) : defaultState
+  return state ? normalize(state) : clone(defaultState)
 }
