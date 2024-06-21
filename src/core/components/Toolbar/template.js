@@ -14,8 +14,8 @@ export function createToolbar(state) {
   const buttons = [
     {
       icon: 'format_bold',
-      active: state['fontWeght'] === 'bold',
-      value: {fontWeght: state['fontWeght'] === 'bold' ? 'normal' : 'bold'}
+      active: state['fontWeight'] === 'bold',
+      value: {fontWeight: state['fontWeight'] === 'bold' ? 'normal' : 'bold'}
     },
     {
       icon: 'format_italic',
@@ -24,8 +24,8 @@ export function createToolbar(state) {
     },
     {
       icon: 'format_underlined',
-      active: state['fontDecoration'] === 'underlined',
-      value: {fontDecoration: state['fontDecoration'] === 'underlined' ? 'none' : 'underlined'}
+      active: state['textDecoration'] === 'underline',
+      value: {textDecoration: state['textDecoration'] === 'underline' ? 'none' : 'underline'}
     },
     {
       icon: 'format_align_left',

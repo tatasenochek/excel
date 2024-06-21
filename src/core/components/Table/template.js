@@ -1,10 +1,15 @@
-import { getHeight, getWidth } from "./utils";
+import { initialStates } from "../../../const";
+import { camelToDashCase, getHeight, getWidth } from "./utils";
 
 export function createCell(state, row) {
 	return function (_, col) {
 		const width = getWidth(state.colState, col);
 		const id = `${row}:${col}`;
 		const data = state.dataState[id];
+		const styles = Object.keys(initialStates)
+		.map(key => `${camelToDashCase(key)}:${initialStates[key]}`)
+		.join('; ')
+	
 		return `
 			<div 
 				class="cell" 
@@ -13,7 +18,7 @@ export function createCell(state, row) {
 				data-col=${col} 
 				data-row=${row}
 				data-id=${row}:${col}
-				style="width:${width}"
+				style="${styles}; width:${width}"
 			>${data || ''}</div>
 		`;
 	};

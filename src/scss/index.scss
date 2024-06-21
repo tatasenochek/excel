@@ -16,12 +16,13 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: normal;
   line-height: normal;
   width: calc(100% - 40px);
   margin: 0 auto;
   color: $text-color;
   background-color: $bg-color;
+  text-decoration: none;
 }
 
 .excel {

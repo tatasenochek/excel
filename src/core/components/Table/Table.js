@@ -3,6 +3,7 @@ import { ExcelComponent } from '../../ExcelComponent';
 import { TableSelection } from './TabelSelection';
 import { $ } from '../Utilit';
 import { createTable, isCell, matrix, nextSelector, shouldResize, tableResizeHendler } from './utils';
+import { initialStates } from '../../../const';
 
 export class Table extends ExcelComponent {
 	static className = 'excel__table';
@@ -36,11 +37,18 @@ export class Table extends ExcelComponent {
 		this.$on('formula:done', () => {
 			this.selection.current.focus();
 		});
+
+		this.$on('toolbar:applyStyle', style => {
+			this.selection.applyStyle(style)
+		})
 	}
 
 	selectCell($cell) {
 		this.selection.select($cell);
 		this.$emit('table:select', $cell);
+		const styles = $cell.getStyles(Object.keys(initialStates))
+		this.$dispatch(action.changeStyle(styles))
+		console.log(styles)
 	}
 
 	async resizeTable(event) {

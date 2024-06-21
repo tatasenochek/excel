@@ -1,3 +1,4 @@
+import { initialStates } from "../../../const";
 import { ExcelStateComponent } from "../../ExcelStateComponent";
 import { $ } from "../Utilit";
 import { createToolbar } from "./template";
@@ -15,13 +16,7 @@ export class Toolbar extends ExcelStateComponent {
     })
   }
   prepare() {
-    const initialState = {
-      textAlign:'left',
-      fontWeght:'normal',
-      textDecoration:'none',
-      fontStyle:'normal'
-    }
-    this.initState(initialState)
+    this.initState(initialStates)
   }
 
   get template() {
@@ -37,10 +32,11 @@ export class Toolbar extends ExcelStateComponent {
     if ($target.data.type === 'button') {
       
       const value = JSON.parse($target.data.value)
-      const key = Object.keys(value)[0]
-      console.log(key)
-      this.setState({[key]: value[key]})
-      console.log(this.state)
+      this.$emit('toolbar:applyStyle', value)
     }
+  }
+
+  storeChanged(changes) {
+    this.setState(changes.currentStyles)
   }
 }
