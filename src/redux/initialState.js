@@ -1,5 +1,4 @@
 import { initialStates, defaultTitle } from "../const"
-import { storage } from "../core/components/Table/utils"
 
 const defaultState = {
   title: defaultTitle,
@@ -17,4 +16,6 @@ const normalize = state => ({
   currentText: ''
 })
 
-export const initialState = storage('excel-state') ? normalize(storage('excel-state')) : defaultState
+export function normalizeInitialState(state) {
+  return state ? normalize(state) : defaultState
+}
