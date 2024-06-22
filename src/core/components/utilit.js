@@ -24,7 +24,7 @@ class Utilit {
     return this.$el.textContent.trim()
   }
 
-  clear () {
+  clear() {
     this.html('')
     return this
   }

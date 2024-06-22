@@ -2,6 +2,11 @@
 @import "mixins";
 
 .db {
+  .empty {
+    text-align: center;
+    padding-block-start: $padding-big;
+    padding-block-end: $padding-big;
+  }
 
   &__header {
   text-align: center;
